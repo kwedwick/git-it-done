@@ -18,7 +18,7 @@
     </p>
   </header>
 
-<!--user input form-->
+  <!--user input form-->
   <main class="flex-row justify-space-between">
     <div class="col-12 col-md-4">
       <div class="card">
@@ -29,16 +29,28 @@
           <button type="submit" class="btn">Get User</button>
         </form>
       </div>
+      <!--language buttons-->
+      <div class="card">
+        <h3 class="card-header text-uppercase">Search By Topic</h3>
+        <div class="card-body" id="language-buttons">
+          <button class="btn" data-language="javascript">JavaScript</button>
+          <button class="btn" data-language="html">HTML</button>
+          <button class="btn" data-language="css">CSS</button>
+        </div>
+      </div>
+
     </div>
-    
+
+
+
     <!-- shows all repositories from search result-->
     <div class="col-12 col-md-8">
       <h2 class="subtitle">Showing Repositories for: <span id="repo-search-term"></span></h2>
       <div id="repos-container" class="list-group"></div>
     </div>
   </main>
-  
-  <script src="./assets/js/homepage.js"></script>  
+
+  <script src="./assets/js/homepage.js"></script>
 </body>
 
 </html>

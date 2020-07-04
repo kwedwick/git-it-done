@@ -2,7 +2,7 @@ var userFormEl = document.querySelector("#user-form");
 var nameInputEl = document.querySelector("#username");
 var repoContainerEl = document.querySelector("#repos-container");
 var repoSearchTerm = document.querySelector("#repo-search-term")
-
+var languageButtonsEl = document.querySelector("#language-buttons")
 
 
 //this is gathering the input and turning it into a variable to submit to getUserRepos
@@ -88,8 +88,34 @@ var displayRepos = function (repos, searchTerm) {
     // append container to the dom
     repoContainerEl.appendChild(repoEl);
   }
+};
+
+var getFeaturedRepos = function(language) {
+  var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
+
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function(data) {
+        displayRepos(data.items, language)
+      });
+      console.log(response);
+    } else {
+      alert("Error: " + response.statusText);
+    }
+  });
+};
+
+var buttonClickHandler = function (event) {
+  var language = event.target.getAttribute("data-language");
+  
+  if (language) {
+    getFeaturedRepos(language);
+    //clear old content
+    repoContainerEl.textContent = "";
+  }
+
 }
 
 
-
 userFormEl.addEventListener("submit", formSubmitHandler);
+languageButtonsEl.addEventListener("click", buttonClickHandler);
